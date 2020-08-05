@@ -37,6 +37,7 @@ public class EmployeesShowServlet extends HttpServlet {
         Employee e = em.find(Employee.class, Integer.parseInt(request.getParameter("id")));
         //おそらく上記で指定した1つのカラムを含むレコードの全ての情報をeに格納する処理
         //getParamで得たデータ型の変換を忘れずに
+        //resuest.getParameter()はどんなデータもString型として取得するのでInteger.parseInt
         em.close();
 
         request.setAttribute("employee", e);

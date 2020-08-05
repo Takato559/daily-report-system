@@ -35,14 +35,17 @@ public class EmployeesEditServlet extends HttpServlet {
         EntityManager em = DBUtil.createEntityManager();
 
         Employee e = em.find(Employee.class, Integer.parseInt(request.getParameter("id")));
-
+        //注意したいのが request.getParameter() はどのようなデータもString型のデータとして取得するという特徴です。
         em.close();
 
         request.setAttribute("employee", e);
         request.setAttribute("_token", request.getSession().getId());
         //こっちは良いにしても
         request.getSession().setAttribute("employee_id", e.getId());
-        //こっちはいつ使う？
+        //こっちはいつ使う？Updateで使う。なぜ？ EditServ -> edit.jsp -> UpdateServ
+        //リクエストスコープにIDを入れた場合、このあと作成する /update へデータを
+        //送信する際に <input type="hidden"> を使ってメッセージIDの情報をフォームに追加する必要があります。
+        //しかし今回はセッションスコープへメッセージのIDの情報を保存して、/update へ渡すことにしました。
 
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/edit.jsp");
