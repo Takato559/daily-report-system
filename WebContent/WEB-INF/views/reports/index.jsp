@@ -10,7 +10,7 @@
             </div>
         </c:if>
         <h2>日報 一覧</h2>
-        <table>
+        <table id="report_list">
             <tbody>
                 <tr>
                     <th class="report_name">氏名</th>
@@ -19,7 +19,7 @@
                     <th class="report_action">操作</th>
                 </tr>
                <c:forEach var="report" items="${reports}" varStatus="status">
-                   <tr>
+                   <tr class="row${status.count % 2}">
                        <td class="report_name"><c:out value="${report.employee.name}" /></td>
                        <td class="report_date"><fmt:formatDate value="${report.report_date}" pattern='yyyy-MM-dd' /></td>
                        <td class="report_title">${report.title}</td>
