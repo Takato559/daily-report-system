@@ -140,12 +140,22 @@ h1 a {
     color: #eeeeee;
 }
 
+table#report_list th {
+    font-weight: hold;
+    padding: 10px 2%;
+}
 
+table#report_list .report_name {
+    width: 20%;
+    padding: 10px 2%;
+}
+table#report_list .report_title {
+    width: 37%;
+}
 
-
-
-
-
+talbe#report_list .rport_action {
+    width: 13%;
+}
 
 
 
