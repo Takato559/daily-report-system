@@ -16,7 +16,7 @@
 <label for="name">氏名</label><br />
 <c:out value="${sessionScope.login_employee.name}" />
 
-<!-- sessionScopeて何？  -->
+
 
 <br /><br />
 
