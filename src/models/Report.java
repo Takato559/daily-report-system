@@ -24,7 +24,15 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "getReportsCount",
             query = "SELECT COUNT(r) FROM Report AS r"
-            ),//この","はいる?
+            ),
+    @NamedQuery(
+            name = "getMyAllReports",
+            query = "SELECT r FROM Report AS r WHERE r.employee = :employee ORDER BY r.id DESC"
+            ),
+    @NamedQuery(
+            name = "getMyReportsCount",
+            query = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :employee"
+            )
 
 
 })

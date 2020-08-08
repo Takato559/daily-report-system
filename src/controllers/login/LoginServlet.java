@@ -77,6 +77,7 @@ public class LoginServlet extends HttpServlet {
             e = em.createNamedQuery("checkLoginCodeAndPassword", Employee.class)
                     .setParameter("code", code)
                     .setParameter("pass", password)
+//                   //この２つは何のため？
                     .getSingleResult();
             } catch(NoResultException ex) {}
 
@@ -98,7 +99,7 @@ public class LoginServlet extends HttpServlet {
         } else {
             //認証できたらログイン状態にしてトップページへリダイレクト
             request.getSession().setAttribute("login_employee", e);
-
+//
             request.getSession().setAttribute("flush", "ログインしました。");
             response.sendRedirect(request.getContextPath() + "/");
         }

@@ -43,6 +43,8 @@ public class ReportsEditSerlvet extends HttpServlet {
         if(r != null && login_employee.getId() == r.getEmployee().getId()) {
             request.setAttribute("report", r);
             request.setAttribute("_token", request.getSession().getId());
+            request.getSession().setAttribute("report_id", r.getId());
+            //for updateserv
         }
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/edit.jsp");
