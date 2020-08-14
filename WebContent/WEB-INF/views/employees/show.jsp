@@ -21,11 +21,14 @@
                         <tr>
                             <th>権限</th>
                             <c:choose>
-                                <c:when test="${employee.admin_flag == 0}">
-                                    <td>一般</td>
+                                <c:when test="${employee.admin_flag == 1}">
+                                    <td>部長</td>
+                                </c:when>
+                                <c:when test="${employee.admin_flag == 2}">
+                                    <td>課長</td>
                                 </c:when>
                                 <c:otherwise>
-                                    <td>管理者</td>
+                                    <td>一般</td>
                                 </c:otherwise>
                             </c:choose>
                         </tr>

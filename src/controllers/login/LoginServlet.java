@@ -77,7 +77,8 @@ public class LoginServlet extends HttpServlet {
             e = em.createNamedQuery("checkLoginCodeAndPassword", Employee.class)
                     .setParameter("code", code)
                     .setParameter("pass", password)
-//                   //この２つは何のため？
+//                   //この２つは何のため？ ->NamedQueryの:に当てはめるため
+
                     .getSingleResult();
             } catch(NoResultException ex) {}
 
