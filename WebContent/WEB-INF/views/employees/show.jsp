@@ -22,10 +22,10 @@
                             <th>権限</th>
                             <c:choose>
                                 <c:when test="${employee.admin_flag == 1}">
-                                    <td>部長</td>
+                                    <td>課長</td>
                                 </c:when>
                                 <c:when test="${employee.admin_flag == 2}">
-                                    <td>課長</td>
+                                    <td>部長</td>
                                 </c:when>
                                 <c:otherwise>
                                     <td>一般</td>

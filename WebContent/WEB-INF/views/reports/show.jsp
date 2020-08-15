@@ -52,21 +52,22 @@
                     <p><a href="<c:url value='/reports/edit?id=${report.id}' />">この日報を編集する</a></p>
                 </c:if>
                 <c:if test="${sessionScope.login_employee.admin_flag > report.employee.admin_flag}">
-                    <c:choose>
-                        <c:when test="${report.approval == 0 || report.approval == null}">
-                            <p><a href="#">承認する</a></p>
-                            <form method="POST" action="<c:url value='/reports/approve' />">
-                                <input type="hidden" name="_token" value="${_token}" />
-                            </form>
-                        </c:when>
-                        <c:otherwise>
-                            <p><a href="#">承認を取り消す</a></p>
-                            <form method="POST" action="<c:url value='/reports/approve' />">
-                                <input type="hidden" name="_token" value="${_token}" />
-                            </form>
-                        </c:otherwise>
-                    </c:choose>
-                </c:if>
+
+                    <form method="POST" action="<c:url value='/reports/approval' />">
+                        <input type="hidden" name="_token" value="${_token}" />
+                        <input type="hidden" name="report_id_for_approval" value="${report.id}" />
+                        <c:choose>
+                            <c:when test="${report.approval == 0}">
+                                <!-- <p><a href="#">承認する</a></p> -->
+                                <input type="submit" value="<c:out value="承認する" />">
+                            </c:when>
+                            <c:otherwise>
+                                <input type="submit" value="<c:out value="承認を解除する" />">
+                            </c:otherwise>
+                         </c:choose>
+                    </form>
+
+                 </c:if>
 
             </c:when>
             <c:otherwise>
