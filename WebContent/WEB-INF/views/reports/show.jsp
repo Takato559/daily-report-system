@@ -25,6 +25,19 @@
                             </td>
                         </tr>
                         <tr>
+                            <th>承認</th>
+                            <td>
+                            <c:choose>
+                                <c:when test="${report.approval == null || report.approval == 0}">
+                                    未
+                                </c:when>
+                                <c:otherwise>
+                                    済
+                                </c:otherwise>
+                            </c:choose>
+                            </td>
+                        </tr>
+                        <tr>
                             <th>登録日時</th>
                             <td><fmt:formatDate value="${report.created_at}" /></td>
                         </tr>
@@ -38,6 +51,23 @@
                 <c:if test="${sessionScope.login_employee.id == report.employee.id}">
                     <p><a href="<c:url value='/reports/edit?id=${report.id}' />">この日報を編集する</a></p>
                 </c:if>
+                <c:if test="${sessionScope.login_employee.admin_flag > report.employee.admin_flag}">
+                    <c:choose>
+                        <c:when test="${report.approval == 0 || report.approval == null}">
+                            <p><a href="#">承認する</a></p>
+                            <form method="POST" action="<c:url value='/reports/approve' />">
+                                <input type="hidden" name="_token" value="${_token}" />
+                            </form>
+                        </c:when>
+                        <c:otherwise>
+                            <p><a href="#">承認を取り消す</a></p>
+                            <form method="POST" action="<c:url value='/reports/approve' />">
+                                <input type="hidden" name="_token" value="${_token}" />
+                            </form>
+                        </c:otherwise>
+                    </c:choose>
+                </c:if>
+
             </c:when>
             <c:otherwise>
                 <h2>お探しのデータは見つかりませんでした。</h2>
