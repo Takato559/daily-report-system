@@ -38,10 +38,10 @@ public class ReportsApprovalServlet extends HttpServlet {
 
             if(r.getApproval() == 1) {
                 r.setApproval(0);
-//                request.getSession().setAttribute("result", "承認する");
+                request.getSession().setAttribute("flush", "承認を解除しました。");
             } else {
                 r.setApproval(1);
-//                request.getSession().setAttribute("result", "承認を解除する");
+                request.getSession().setAttribute("flush", "承認しました。");
             }
 
             em.getTransaction().begin();
