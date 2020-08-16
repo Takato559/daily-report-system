@@ -61,6 +61,15 @@ public class ReportsCreateServlet extends HttpServlet {
             r.setCreated_at(currentTime);
             r.setUpdated_at(currentTime);
 
+            //部長の投稿なら承認の初期値を1にする == 済
+          //初期値をここで設定して例外を避ける
+            if(r.getEmployee().getAdmin_flag() == 2) {
+                r.setApproval(1);
+            } else {
+                r.setApproval(0);
+
+            }
+
             List<String> errors = ReportValidator.validate(r);
             if(errors.size() > 0) {
                 em.close();
