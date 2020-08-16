@@ -28,11 +28,11 @@
                             <th>承認</th>
                             <td>
                             <c:choose>
-                                <c:when test="${report.approval == null || report.approval == 0}">
-                                    未
+                                <c:when test="${report.approval == 1}">
+                                    済
                                 </c:when>
                                 <c:otherwise>
-                                    済
+                                    未
                                 </c:otherwise>
                             </c:choose>
                             </td>
