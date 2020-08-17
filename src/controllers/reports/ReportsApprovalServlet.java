@@ -34,21 +34,16 @@ public class ReportsApprovalServlet extends HttpServlet {
         String _token = (String)request.getParameter("_token");
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
-            Report r = em.find(Report.class, Integer.parseInt(request.getParameter("report_id_for_approval")));
+//            Report r = em.find(Report.class, Integer.parseInt(request.getParameter("report_id_for_approval")));
+            Report r = em.find(Report.class, Integer.parseInt(request.getParameter("id")));
 
-            if(r.getApproval() == 1) {
-                r.setApproval(0);
-                request.getSession().setAttribute("flush", "承認を解除しました。");
-            } else {
-                r.setApproval(1);
-                request.getSession().setAttribute("flush", "承認しました。");
-            }
+            r.setApproval(1);
 
             em.getTransaction().begin();
             em.getTransaction().commit();
             em.close();
 
-//            request.getSession().setAttribute("flush", "承認しました。");
+            request.getSession().setAttribute("flush", "承認しました。");
             response.sendRedirect(request.getContextPath() + "/reports/index");
         }
 //        else {
